@@ -10,6 +10,8 @@ import (
 	"github.com/rodrigo-brito/ninjabot/plot/indicator"
 	"github.com/rodrigo-brito/ninjabot/storage"
 	"github.com/rodrigo-brito/ninjabot/tools/log"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 // This example shows how to use backtesting with NinjaBot
@@ -47,7 +49,9 @@ func main() {
 	}
 
 	// initialize a database in memory
-	storage, err := storage.FromMemory()
+	dsn := "host=localhost user=evan password=HNEzz4fang. dbname=tictick_db port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+	storage, err := storage.FromSQL(postgres.Open(dsn), &gorm.Config{})
+	// storage, err := storage.FromMemory()
 	if err != nil {
 		log.Fatal(err)
 	}

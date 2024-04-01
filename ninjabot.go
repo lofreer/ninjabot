@@ -139,17 +139,17 @@ func WithNotifier(notifier service.Notifier) Option {
 	}
 }
 
-// WithCandleSubscription subscribes a given struct to the candle feed
-func WithCandleSubscription(subscriber CandleSubscriber) Option {
-	return func(bot *NinjaBot) {
-		bot.SubscribeCandle(subscriber)
-	}
-}
-
 // WithPaperWallet sets the paper wallet for the bot (used for backtesting and live simulation)
 func WithPaperWallet(wallet *exchange.PaperWallet) Option {
 	return func(bot *NinjaBot) {
 		bot.paperWallet = wallet
+	}
+}
+
+// WithCandleSubscription subscribes a given struct to the candle feed
+func WithCandleSubscription(subscriber CandleSubscriber) Option {
+	return func(bot *NinjaBot) {
+		bot.SubscribeCandle(subscriber)
 	}
 }
 
